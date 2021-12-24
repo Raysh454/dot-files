@@ -1,0 +1,702 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+;background = ${xrdb:color0:#222}
+;background = #222
+background = #2e3440
+background-alt = #444
+;foreground = ${xrdb:color7:#222}
+foreground = #eceff4
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #dfdfdf
+;alert = #bd2c40
+transparent = "#aa000000"
+purple = #dfdfdf
+pink = #dfdfdf
+
+
+[bar/example]
+
+bottom = false
+enable-ipc = true
+
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 20
+;offset-x = 1%
+;offset-y = 1%
+radius-top = 0
+radius-bottom = 2
+fixed-center = true
+
+background = #1c1c1c
+foreground = ${colors.foreground}
+
+line-size = 0
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-right = 2
+
+module-margin-left = 2
+module-margin-right = 2
+
+;font-0 = "Hack Nerd Font:pixelsize=9;0"
+;font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+;font-2 = siji:pixelsize=10;1
+
+;font-0 = fixed:pixelsize=10;1
+;font-0 = "Font Awesome:size=10;1"
+;font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+;font-2 = siji:pixelsize=10;1
+;font-3 = "Font Awesome 5 Brands:pixelsize=10;1"
+;font-4 = "Font Awesome 5 Free Regular:pixelsize=10;1"
+;font-5 = "Font Awesome 5 Free Solid:pixelsize=10;1"
+
+font-0 = roboto mono medium:pixelsize=9;2
+font-1 = unifont:fontformat=truetype:size=6:antialias=false;0
+font-2 = siji:pixelsize=10;1
+font-3 = "Jetbrains Mono ExtraBold:pixelsize=6;3"
+font-4 = "Roboto Mono SemiBold:pixelsize=11;2"
+font-5 = "Roboto Condensed Bold:pixelsize=11;2"
+font-6 = "Symbols Nerd Font:pixelsize=15:antialias=true;4"
+font-7 = "Fira Code Medium:pixelsize=10;3"
+font-8 = "Fira Code Semibold:pixelsize=10;3"
+font-9 = "Symbols Nerd Font:pixelsize=15:antialias=true;4"
+font-10 = "JetBrains Mono SemiBold:pixelsize=9;3"
+;font-11 = "JetBrainsMono Nerd Font Mono:pixelsize=13:antialias=true;5"
+font-11 = "Fira Code Medium:pixelsize=10;3"
+font-12 = "Open Sans ExtraBold:pixelsize=11;3"
+font-13 = "Open Sans Extrabold:pixelsize=12;1"
+font-14 = "Font Awesome 5 Brands:pixelsize=10;1"
+font-15 = "Font Awesome:size=10;1"
+font-16 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-17 = siji:pixelsize=10;1
+font-18 = "Font Awesome 5 Free Regular:pixelsize=10;1"
+font-19 = "Font Awesome 5 Free Solid:pixelsize=10;1"
+
+modules-left = i3
+modules-center = date
+modules-right = weather
+;separator-foreground = ${colors.foreground-alt}
+;separator = " | "
+
+tray-position = 
+tray-padding = 2
+tray-background = #0063ff
+
+;wm-restack = bspwm
+wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = ""
+format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-underline = ${colors.secondary}
+
+label-layout = %layout%
+label-layout-underline = ${colors.secondary}
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.secondary}
+label-indicator-underline = ${colors.secondary}
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %index%
+;label-focused-background = ${colors.background-alt}
+label-focused-background = #000000
+label-focused-foreground = #88c0d0
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+label-occupied = %index%
+label-occupied-padding = 2
+
+label-urgent = %index%!
+label-urgent-background = ${colors.foreground-alt}
+label-urgent-padding = 2
+
+label-empty = %index%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+;Separator in between workspaces
+;label-separator = |
+
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = true
+
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+;label-focused-background = ${colors.background-alt}
+label-focused-background = #1c1c1c
+label-focused-foreground = #93b5f8
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = #aa820041
+label-urgent-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+
+
+[module/mpd]
+type = internal/mpd
+
+format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+label-song-maxlen = 25
+label-song-ellipsis = true
+
+[module/xbacklight]
+type = internal/xbacklight
+
+format = <label> <bar>
+label = BL
+
+bar-width = 10
+bar-indicator = |
+bar-indicator-foreground = #fff
+bar-indicator-font = 2
+bar-fill = ─
+bar-fill-font = 2
+bar-fill-foreground = #9f78e1
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = ${colors.foreground-alt}
+
+[module/backlight-acpi]
+inherit = module/xbacklight
+type = internal/backlight
+card = intel_backlight
+
+[module/cpu]
+type = internal/cpu
+interval = 1
+format-prefix = " "
+format-prefix-foreground = ${colors.purple}
+format-underline = #f90000
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.pink}
+format-underline = #4bffdc
+#label= %used% | %available%
+label = %mb_used%
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 0.1
+
+format-connected = <label-connected>
+format-connected-prefix = 
+format-connected-underline = #9f78e1
+label-connected= " "
+label-connected-foreground = ${colors.purple}
+;label-connected-foreground = ${colors.foreground-alt} 
+
+format-disconnected = <label-disconnected>
+format-disconnected-prefix = 
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+label-disconnected = " "
+label-disconnected-foreground = #ff0000
+
+
+;ramp-signal-0 = 
+;ramp-signal-1 = 
+;ramp-signal-foreground = ${colors.foreground-alt}
+click-right = nm-applet
+
+[module/eth]
+type = internal/network
+interface = enp1s0
+interval = 3.0
+
+format-connected-underline = #55aa55
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 1
+
+;time = %I:%M %p
+;time-alt = %I:%M:%S
+;format-prefix = "   "
+;format-prefix-foreground = ${colors.foreground}
+
+time = %I:%M %p
+time-alt = %I:%M:%S
+;format-prefix = "   "
+;format-prefix-foreground = ${colors.foreground}
+
+date = %A %e %B 
+date-alt = " %d-%m-%Y"
+
+;format-background = ${colors.background}
+;format-prefix = "  " 
+;label-background = ${colors.background}
+;format-underline = #0a6cf5
+format-font= 12
+
+label = %date% %time%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <ramp-volume> <label-volume>
+label-volume =  " %percentage%%"
+label-volume-foreground = ${root.foreground}
+
+ramp-volume-0 = ""
+ramp-volume-1 = ""
+ramp-volume-2 = ""
+ramp-volume-3 = ""
+ramp-volume-4 = ""
+ramp-volume-5 = "墳"
+ramp-volume-6 = "墳"
+ramp-volume-7 = "墳"
+ramp-volume-8 = ""
+ramp-volume-9 = ""
+ramp-volume-10 = ""
+label-muted =  "婢" 
+label-muted-foreground = #440000
+
+bar-volume-width = 10
+ramp-volume-foreground = ${colors.pink}
+#ramp-volume-foreground = ${colors.pink}
+#ramp-volume-foreground = ${colors.pink}
+#ramp-volume-foreground = ${colors.pink}
+#ramp-volume-foreground = ${colors.pink}
+#ramp-volume-foreground = ${colors.pink}
+#ramp-volume-foreground = ${colors.pink}
+#ramp-volume-foreground = ${colors.pink}
+#ramp-volume-foreground = ${colors.pink}
+#ramp-volume-foreground = ${colors.pink}
+#ramp-volume-foreground = ${colors.pink}
+#bar-volume-foreground = ${colors.pink}
+#bar-volume-foreground-5 = ${colors.pink}
+#bar-volume-foreground-6 = ${colors.pink}
+#bar-volume-foreground-6 = ${colors.pink}
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 1
+bar-volume-fill = ─
+bar-volume-fill-font = 1
+bar-volume-empty = ─
+bar-volume-empty-font = 1
+ibar-volume-empty-foreground = ${colors.foreground-alt}
+
+click-right = pavucontrol
+
+[module/alsa]
+type = internal/alsa
+
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL
+label-volume-foreground = ${root.foreground}
+
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = sound muted
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 1
+bar-volume-fill = ─
+bar-volume-fill-font = 1
+bar-volume-empty = ─
+bar-volume-empty-font = 1
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ACAD
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = #ffb52a
+
+format-discharging = <animation-discharging> <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-foreground = ${colors.foreground-alt}
+animation-discharging-framerate = 750
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = " "
+ramp-0-foreground = ${colors.purple}
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = 
+label-open-foreground = ${colors.secondary}
+label-close = 
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = 
+menu-0-0-exec = reboot
+menu-0-1 = 
+menu-0-1-exec = poweroff
+
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = "  "
+format-prefix-foreground = #119911
+format = <label>
+;format-background = ${colors.background}
+exec = python ~/.config/polybar/scripts/polybar-spotify/spotify_status.py -t 32 --font 8 -f '{song} - {artist}'
+click-left = "sh ~/.config/polybar/scripts/polybar-spotify/open-spotify.sh"
+
+[module/spotify-next]
+;interval = 1
+type = custom/script
+;exec-if="pgrep spotify"
+exec = echo " "
+click-left = "playerctl next spotify"
+
+[module/spotify-playpause]
+type = custom/script
+interval = 1
+;exec-if="pgrep spotify"
+exec = "sh ~/.config/polybar/scripts/polybar-spotify/play-pause.sh"
+click-left = "playerctl play-pause spotify"
+
+[module/spotify-prev]
+;interval = 1
+type = custom/script
+;exec-if="pgrep spotify"
+exec = echo " "
+click-left = "playerctl previous spotify"
+
+[module/discord]
+type = custom/script
+interval = 1
+exec-if = "pgrep Discord"
+exec = echo ""
+click-left = i3-msg "[instance="discord"] focus"
+click-right = discord &
+
+[module/steam]
+type = custom/script
+interval = 1
+exec-if = "pgrep steam"
+exec = echo ""
+click-left = i3-msg "[instance="Steam"] focus"
+
+[module/spotify-status]
+type = custom/script
+interval = 1
+exec-if = "pgrep spotify"
+exec = echo " "
+click-left = i3-msg "[instance="spotify"] focus"
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[module/weather]
+type = custom/script
+exec = wedder -k 645d6d0208db79ef464d9151520e1d5a
+exec-if = ping openweathermap.org -c 1
+tail = true
+click-left = xdg-open "https://www.google.com/search?q=weather"
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini
+
+[bar/mybar]
+
+bottom = true
+
+override-redirect = true
+;wm-restack = i3
+
+width = 100%
+height = 30
+radius = 15.0
+tray-position = 
+
+background = ${colors.transparent}
+foreground = ${colors.foreground}
+
+line-size = 0
+;line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-right = 2
+padding-left = 2
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = roboto mono medium:pixelsize=9;2
+font-1 = unifont:fontformat=truetype:size=6:antialias=false;0
+font-2 = siji:pixelsize=10;1
+font-3 = "Jetbrains Mono ExtraBold:pixelsize=6;3"
+font-4 = "Roboto Mono SemiBold:pixelsize=11;2"
+font-5 = "Roboto Condensed Bold:pixelsize=11;2"
+font-6 = "Symbols Nerd Font:pixelsize=15:antialias=true;4"
+font-7 = "Fira Code Medium:pixelsize=10;3"
+font-8 = "Fira Code Semibold:pixelsize=10;3"
+font-9 = "Symbols Nerd Font:pixelsize=15:antialias=true;4"
+font-10 = "JetBrains Mono SemiBold:pixelsize=9;3"
+;font-11 = "JetBrainsMono Nerd Font Mono:pixelsize=13:antialias=true;5"
+font-11 = "Fira Code Medium:pixelsize=10;3"
+font-12 = "Open Sans ExtraBold:pixelsize=11;3"
+font-13 = "Open Sans Extrabold:pixelsize=12;1"
+font-14 = "Font Awesome 5 Brands:pixelsize=10;1"
+
+modules-left = date
+modules-center = spotify spotify-prev spotify-playpause spotify-next 
+modules-right = steam discord
+
+;tray-position = right
+;tray-background = ${colors.background}
+;tray-padding = 2
+
+[bar/yourbar]
+background = ${colors.transparent}
+bottom = true
+override-redirect = true
+offset-x = 482
+width = 30%
+height = 30
+radius = 15
+module-margin = 1
+
+font-0 = roboto mono medium:pixelsize=9;2
+font-1 = unifont:fontformat=truetype:size=6:antialias=false;0
+font-2 = siji:pixelsize=10;1
+font-3 = "Jetbrains Mono ExtraBold:pixelsize=6;3"
+font-4 = "Roboto Mono SemiBold:pixelsize=11;2"
+font-5 = "Roboto Condensed Bold:pixelsize=11;2"
+font-6 = "Symbols Nerd Font:pixelsize=15:antialias=true;4"
+font-7 = "Fira Code Medium:pixelsize=10;3"
+font-8 = "Fira Code Semibold:pixelsize=10;3"
+font-9 = "Symbols Nerd Font:pixelsize=15:antialias=true;4"
+font-10 = "JetBrains Mono SemiBold:pixelsize=9;3"
+;font-11 = "JetBrainsMono Nerd Font Mono:pixelsize=13:antialias=true;5"
+font-11 = "Fira Code Medium:pixelsize=10;3"
+font-12 = "Open Sans ExtraBold:pixelsize=11;3"
+font-13 = "Open Sans Extrabold:pixelsize=12;1"
+font-14 = "Font Awesome 5 Brands:pixelsize=10;1"
+
+modules-center = spotify spotify-prev spotify-playpause spotify-next
+
+[bar/ourbar]
+background = ${colors.transparent}
+bottom = true
+override-redirect = true
+offset-x = 
+width = 25%
+height = 30
+radius = 15
+module-margin = 1
+padding-right = 2
+padding-left = 2
+modules-left = temperature memory cpu pulseaudio wlan
+
+font-0 = roboto mono medium:pixelsize=9;2
+font-1 = unifont:fontformat=truetype:size=6:antialias=false;0
+font-2 = siji:pixelsize=10;1
+font-3 = "Jetbrains Mono ExtraBold:pixelsize=6;3"
+font-4 = "Roboto Mono SemiBold:pixelsize=11;2"
+font-5 = "Roboto Condensed Bold:pixelsize=11;2"
+font-6 = "Symbols Nerd Font:pixelsize=15:antialias=true;4"
+font-7 = "Fira Code Medium:pixelsize=10;3"
+font-8 = "Fira Code Semibold:pixelsize=10;3"
+font-9 = "Symbols Nerd Font:pixelsize=15:antialias=true;4"
+font-10 = "JetBrains Mono SemiBold:pixelsize=9;3"
+;font-11 = "JetBrainsMono Nerd Font Mono:pixelsize=13:antialias=true;5"
+font-11 = "Fira Code Medium:pixelsize=10;3"
+font-12 = "Open Sans ExtraBold:pixelsize=11;3"
+font-13 = "Open Sans Extrabold:pixelsize=12;1"
+font-14 = "Font Awesome 5 Brands:pixelsize=10;1" 
+font-15 = "Font Awesome:size=10;1"
+font-16 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-17 = siji:pixelsize=10;1
+font-18 = "Font Awesome 5 Free Regular:pixelsize=10;1"
+font-19 = "Font Awesome 5 Free Solid:pixelsize=10;1"
+
+[bar/theirbar]
+
+background = ${colors.transparent}
+bottom = true
+override-redirect = true
+offset-x = 1250
+width = 8%
+height = 30
+radius = 15
+module-margin = 1
+padding = 5
+modules-center = powermenu
+
+font-0 = roboto mono medium:pixelsize=9;2
+font-1 = unifont:fontformat=truetype:size=6:antialias=false;0
+font-2 = siji:pixelsize=10;1
+font-3 = "Jetbrains Mono ExtraBold:pixelsize=6;3"
+font-4 = "Roboto Mono SemiBold:pixelsize=11;2"
+font-5 = "Roboto Condensed Bold:pixelsize=11;2"
+font-6 = "Symbols Nerd Font:pixelsize=15:antialias=true;4"
+font-7 = "Fira Code Medium:pixelsize=10;3"
+font-8 = "Fira Code Semibold:pixelsize=10;3"
+font-9 = "Symbols Nerd Font:pixelsize=15:antialias=true;4"
+font-10 = "JetBrains Mono SemiBold:pixelsize=9;3"
+;font-11 = "JetBrainsMono Nerd Font Mono:pixelsize=13:antialias=true;5"
+font-11 = "Fira Code Medium:pixelsize=10;3"
+font-12 = "Open Sans ExtraBold:pixelsize=11;3"
+font-13 = "Open Sans Extrabold:pixelsize=12;1"
+font-14 = "Font Awesome 5 Brands:pixelsize=10;1"
+font-15 = "Font Awesome:size=10;1"
+font-16 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-17 = siji:pixelsize=10;1
+font-18 = "Font Awesome 5 Free Regular:pixelsize=10;1"
+font-19 = "Font Awesome 5 Free Solid:pixelsize=10;1"
